@@ -27,3 +27,22 @@ Normal for loop gives tle... so we iterate till sqrt of N as num above it will n
         
     }
 
+
+floating point error... caused due to division by zero... refer this chat: https://chatgpt.com/share/9e4f8cf5-4e0e-43a6-8312-efb4c2fda17c
+class Solution{
+public:
+    int evenlyDivides(int N){
+        //code here
+        int num = N;
+        int count=0;
+        while(num){
+            int check = num%10;
+            if(check!=0 && N%check == 0){    //here the error is caused as we divide N by check and check can be zero... so we apply if case that check is not zero. 
+                count++;
+            }
+            num=num/10;
+        }
+        return count;
+    }
+};
+
