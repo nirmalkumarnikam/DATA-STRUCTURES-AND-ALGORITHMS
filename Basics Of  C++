@@ -14,7 +14,7 @@ int main() {
 }
 
 find prime
-Normal for loop gives tle... so we iterate till sqrt of N as num above it will not divide that number.
+METHOD 1) Normal for loop gives tle... so we iterate till sqrt of N as num above it will not divide that number.
 
     int isPrime(int N){
         // code here
@@ -26,6 +26,28 @@ Normal for loop gives tle... so we iterate till sqrt of N as num above it will n
         return 1;
         
     }
+METHOD 2) //Sieve of Eratosthenes
+   	long long int prime_Sum(int n){
+   	    
+   	    // initialize a vector with n+1 size
+   	    vector<int>sieve(n+1,1);
+   	    
+   	    long long int sum=0;
+   	    
+   	    
+   	    for(int i = 2; i<=n; i++){
+   	        if(sieve[i]==1)sum = sum+i;
+   	    
+   	        // find a prime number and mark its all multiples as 0
+   	        
+   	        for(int j = 1; i*j<=n; j++){
+   	            sieve[i*j]=0;
+   	        }
+   	    }
+   	    return sum;
+   	}
+
+
 
 
 floating point error... caused due to division by zero... refer this chat: https://chatgpt.com/share/9e4f8cf5-4e0e-43a6-8312-efb4c2fda17c
@@ -107,3 +129,5 @@ void print_divisors(int n) {
                 cout<<ans[i]<<" ";
         }
     }
+
+
