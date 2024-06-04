@@ -46,3 +46,64 @@ public:
     }
 };
 
+
+reversing an equation 50+32-1/21*22
+here we push digits in a string and then push that string. 
+all the symbols( +-*/) are converted to strings of single digits using "string op(1, s[I]);"
+string reverseEqn(string s) {
+        string ans = "";
+        stack<string> st;
+        int n = s.size();
+
+        for (int i = 0; i < n; ) {
+            if (isdigit(s[i])) {
+                string num = "";
+                while (i < n && isdigit(s[i])) {
+                    num.push_back(s[i]);
+                    i++;
+                }
+                st.push(num);
+            } else {
+                string op(1, s[i]); // Convert char to string
+                st.push(op);
+                i++;
+            }
+        }
+
+        while (!st.empty()) {
+            ans += st.top();
+            st.pop();
+        }
+
+        return ans;
+    }
+
+
+Q)Given an integer N, print all the divisors of N in the ascending order.
+
+void print_divisors(int n) {
+        // Code here.
+        vector<int> ans;
+        
+        //to satisfy corner case of 1.
+        if(n==1){
+            cout<<1;
+            return;
+        }
+        
+        for(int i=1; i<=sqrt(n); i++){
+            if(n%i==0){
+                ans.push_back(i);
+                if(i!=n/i){                 //take case of 4... when i=2.. n/i=2..   
+                    ans.push_back(n/i);     //so i will be placed 2 time in vector.. so we put if case
+                }
+                
+            }
+        }
+        
+        sort(ans.begin(),ans.end());
+        
+        for(int i=0; i<ans.size(); i++){
+                cout<<ans[i]<<" ";
+        }
+    }
