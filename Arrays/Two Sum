@@ -1,0 +1,61 @@
+METHOD 1)Brute Force
+
+class Solution
+{
+public:
+    vector<int> twoSum(vector<int>& nums, int target)
+    {
+     vector <int> ans;
+        for (int i=0 ; i<= nums.size() ; i++)
+        {
+            for (int j=i+1 ; i<=nums.size() ; j++ )
+            {  
+                if(nums[i]+nums[j]==target)
+                {
+                  ans.push_back(i);
+                  ans.push_back(j);  
+                }
+            } 
+        }   
+        return ans;
+    }
+};
+
+
+
+METHOD 2) Using Unorderd_Map
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target)
+    {
+        
+        // we will use map to store <numeric value, indices>
+        unordered_map<int , int> table;
+
+        for(int i = 0; i<nums.size(); i++){
+
+            // we will take value from array and subtract it with array value to find how much value is required...
+            int val=nums[i];
+            int requiredNum = target - val;
+
+            // we will find that required value in map... if we get that value in map, 
+            // we will put its indices in vector "ans" and return it
+            if(table.find(requiredNum)!=table.end()){
+                vector<int>ans{i,table[requiredNum]};
+                return ans;
+            }
+
+            // if we dont get that value we will update map
+            table[val]=i;
+        }
+        
+        // if we get no such value we will return null vector
+        return {};
+    }
+};
+
+
+
+
+
