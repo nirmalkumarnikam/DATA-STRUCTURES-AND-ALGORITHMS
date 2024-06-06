@@ -58,9 +58,9 @@ public:
 
 METHODE 3) two pointer approach...
 
-sort the array..
+sort the array..                    ->O(nlogn)
 left = 0, right = arr.size()
-if(left+right == sum) return ans.
+if(left+right == sum) return ans.   ->O(n)
 else if(left+right > sum) right--
 else left++
 
