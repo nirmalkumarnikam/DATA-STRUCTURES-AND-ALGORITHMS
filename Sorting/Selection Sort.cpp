@@ -32,6 +32,9 @@ Selection Sort:-
                      therefore total round N-1.
 
 
+Space Complexity = O(1)
+Time Complexity = O(n^2)  
+
 
 */
 
@@ -56,7 +59,7 @@ void insert(int arr[], int n)
             }
         }
         
-        swap(arr[minIndex], arr[i]);   //swap the left unsorted and smallest element
+        swap(arr[minIndex], arr[i]);   //swap the left unsorted (i) and smallest element
     }
 
     // till the loop ends all the elements will be sorted.
