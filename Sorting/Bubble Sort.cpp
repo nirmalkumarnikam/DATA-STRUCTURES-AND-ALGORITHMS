@@ -122,7 +122,7 @@ void bubbleSort(int arr[], int n) {
         for(int i = 1; i<=n-1; i++){
             
             //actual sorting will start here... 
-            //we are iterating till last unsorted element and swapping the unsorted elements.
+            //process elements till n-i index.
             for(int j=0; j<n-i; j++){
                 if(arr[j]>arr[j+1]){
                     swap(arr[j], arr[j+1]);
