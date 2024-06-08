@@ -71,6 +71,9 @@ Insertion Sort:-
             4. If `j >= 0` and `a[j] > temp`, shift `a[j]` to the right. (while loop)
             5. Insert `temp` at the correct position.
 
+Space Complexity = O(1)
+Time Complexity = O(n^2)  
+
 for(int i=1; i<n; i++){
     temp = a[i];
     j = i-1;
