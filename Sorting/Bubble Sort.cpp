@@ -114,6 +114,8 @@ Bubble Sort:-
                Last element will be already sorted.
                Therefore total round N-1.
 
+Space Complexity = O(1)
+Time Complexity = O(n^2)  
 
 
 void bubbleSort(int arr[], int n) {
@@ -130,3 +132,6 @@ void bubbleSort(int arr[], int n) {
             }
         }
     }
+
+// you can optimize this code by keeping bool if_swapped = true. 
+// its not not swappend in one iteration then break loop.
