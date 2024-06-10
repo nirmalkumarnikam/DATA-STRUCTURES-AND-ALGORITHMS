@@ -32,11 +32,11 @@ METHOD 2) //Sieve of Eratosthenes
    	    // initialize a vector with n+1 size
    	    vector<int>sieve(n+1,1);
    	    
-   	    long long int sum=0;
+   	    long long int sum=0;	//sum of all the primes till n
    	    
    	    
    	    for(int i = 2; i<=n; i++){
-   	        if(sieve[i]==1)sum = sum+i;
+   	        if(sieve[i]==1)sum = sum+i;   
    	    
    	        // find a prime number and mark its all multiples as 0
    	        
@@ -69,17 +69,18 @@ public:
 };
 
 
-reversing an equation 50+32-1/21*22
-here we push digits in a string and then push that string. 
+Q) reversing an equation 50+32-1/21*22
+here we push digits in a string and then push that string into stack. 
 all the symbols( +-*/) are converted to strings of single digits using "string op(1, s[I]);"
+
 string reverseEqn(string s) {
         string ans = "";
         stack<string> st;
         int n = s.size();
 
         for (int i = 0; i < n; ) {
-            if (isdigit(s[i])) {
-                string num = "";
+            if (isdigit(s[i])) {    // isdigit() function to determine whether the char is digit
+                string num = "";  
                 while (i < n && isdigit(s[i])) {
                     num.push_back(s[i]);
                     i++;
