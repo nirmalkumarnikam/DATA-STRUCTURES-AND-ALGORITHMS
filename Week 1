@@ -13,7 +13,7 @@ int main() {
 	return 0;
 }
 
-find prime
+Q) find prime
 METHOD 1) Normal for loop gives tle... so we iterate till sqrt of N as num above it will not divide that number.
 
     int isPrime(int N){
