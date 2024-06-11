@@ -132,3 +132,23 @@ void print_divisors(int n) {
     }
 
 
+Q)Find element in unorderd map. 
+->
+
+if (um.find(sum) == um.end()) 
+    um[sum] = i;
+
+/*
+um.find(sum):
+If the key sum is found, find returns an iterator pointing to the element.
+If the key sum is not found, find returns an iterator to the end of the unordered map (um.end()).
+
+um.end():
+This is a special iterator that points to the position just past the last element of the unordered map.
+It is used to indicate the end of the unordered map and to signify that a searched key was not found.
+
+um.find(sum) == um.end():
+This condition checks if the result of um.find(sum) is equal to um.end().
+If this condition is true, it means that the key sum is not present in the unordered map.
+Then it enters if condtion othervide leaves it.
+*/
