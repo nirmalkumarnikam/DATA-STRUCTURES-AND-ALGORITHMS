@@ -157,3 +157,8 @@ Then it enters if condtion othervide leaves it.
 Q) How to convert string to integer?
 -> string str2 = "3.14159";
    int myint2 = stoi(str2);
+
+
+Q) How to convert integer to String?
+-> int i_val = 20;
+   string stri = to_string(i_val);
