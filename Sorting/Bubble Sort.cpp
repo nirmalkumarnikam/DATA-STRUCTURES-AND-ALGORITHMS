@@ -1,5 +1,5 @@
 
-
+/*
 Bubble Sort:-
     at every ith iteration we place ith largest element to its right place
     
@@ -116,6 +116,8 @@ Bubble Sort:-
 
 Space Complexity = O(1)
 Time Complexity = O(n^2)  
+
+*/
 
 
 void bubbleSort(int arr[], int n) {

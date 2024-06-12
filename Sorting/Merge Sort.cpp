@@ -1,4 +1,4 @@
-
+/*
 Merge Sort:
     based on divide and concour.
 
@@ -24,8 +24,24 @@ Merge Sort:
                             {1, 3, 5, 8, 10, 15, 16, 20, 24}
 
 
+Time Complexity: O(n log n)
+Space Complexity:O(n)
 
-CODE:
+*/
+
+/*
+Algo:
+1)mergesort fun: divide karo
+    recursively call mergesort 2 functions (l -> m) and (m+1 -> r)
+    call merge function (l, m, r)
+2)merge function:
+    make 2 temp arr and fill values from (l -> m) and (m+1 -> r) in both
+    using the 'merge two sorted array approach' merge them
+*/  
+    
+
+
+// CODE:
 
 class Solution
 {

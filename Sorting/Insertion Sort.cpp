@@ -1,4 +1,5 @@
 
+/*
 Insertion Sort:-
     here we basically shift the elements towards right till we get elements at desired location
 
@@ -73,6 +74,7 @@ Insertion Sort:-
 
 Space Complexity = O(1)
 Time Complexity = O(n^2)  
+*/
 
 for(int i=1; i<n; i++){
     temp = a[i];
