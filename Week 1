@@ -152,3 +152,8 @@ This condition checks if the result of um.find(sum) is equal to um.end().
 If this condition is true, it means that the key sum is not present in the unordered map.
 Then it enters if condtion othervide leaves it.
 */
+
+
+Q) How to convert string to integer?
+-> string str2 = "3.14159";
+   int myint2 = stoi(str2);
