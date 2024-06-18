@@ -8,7 +8,7 @@ int main() {
 	cin>>p;
 	cin>>t;
 	cin>>r;
-	double ans = (p*r*t)/100;
+	double ans = (p*r*t)/100; 
 	printf("%.6f",ans); 
 	return 0;
 }
@@ -71,7 +71,7 @@ public:
 
 Q) reversing an equation 50+32-1/21*22
 here we push digits in a string and then push that string into stack. 
-all the symbols( +-*/) are converted to strings of single digits using "string op(1, s[I]);"
+all the symbols( +-*/) are converted to strings of single digits using "string op(1, s[i]);"
 
 string reverseEqn(string s) {
         string ans = "";
@@ -132,7 +132,7 @@ void print_divisors(int n) {
     }
 
 
-Q)Find element in unorderd map. 
+Q)Find element in unorderd_map. 
 ->
 
 if (um.find(sum) == um.end()) 
@@ -150,7 +150,7 @@ It is used to indicate the end of the unordered map and to signify that a search
 um.find(sum) == um.end():
 This condition checks if the result of um.find(sum) is equal to um.end().
 If this condition is true, it means that the key sum is not present in the unordered map.
-Then it enters if condtion othervide leaves it.
+Then it enters if condtion othervise leaves it.
 */
 
 
