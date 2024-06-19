@@ -162,3 +162,6 @@ Q) How to convert string to integer?
 Q) How to convert integer to String?
 -> int i_val = 20;
    string stri = to_string(i_val);
+
+Q) How to initialize 2d vector?
+-> vector<vector<int>>newmatrix(n,vector<int>(m,0));
