@@ -3,9 +3,9 @@
 //BRUTE FORCE
 //tle at test case 1120
 //algo:
-    // 2 for loops will hepl you to go throught eacg subarray possible.
+    // 2 for loops will help you to go through each subarray possible.
     // multiply it and check if prod is less than k
-    // if yes then count++
+    //If yes then count++
     // else prod > k then break loop as there is no use of processing further.
 
 
@@ -45,9 +45,9 @@
 //     in for loop
 //         we will multiply end element to prod;
 //         if prod >= k we will divide the prod by element at index start till prod <k (while loop)
-//         in this window formed between start and end index: no of suarrays in them will have prod < k
+//         in this window formed between start and end index: no of subarrays in them will have prod < k
 //             No of subarray between start and end = 1+(end-start)
-//      move to next end element and repeate steps again
+//      move to next end element and repeat steps again
 
 class Solution{
   public:
