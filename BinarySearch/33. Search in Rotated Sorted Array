@@ -1,0 +1,119 @@
+// class Solution {
+// public:
+
+//     int binary(vector<int>& nums, int target, int left, int right){
+        
+
+//         while(left<=right){
+           
+//             int mid=left+ (right-left)/2;
+
+//             if(nums[mid]==target){
+//                 return mid;
+//             }else if(nums[mid]>target){
+//                 right = mid-1;
+//             }else{
+//                 left = mid+1; 
+//             }
+
+//         }
+//         return -1;
+//     }
+
+//     int search(vector<int>& nums, int target) {
+        
+//         if(nums.empty()) // Handling empty array
+//             return -1;
+        
+//         int peak=0;
+//         int n = nums.size();
+
+//         // //with this we will get peak in O(n) thus below we will use binary search to find mid
+//         // for(int i =0; i<nums.size()-1; i++){
+//         //     if(nums[i]>nums[i+1]){
+//         //         peak=i;
+//         //         break;
+//         //     }
+//         // }
+
+//         int start = 0, end = nums.size()-1;
+//         while(start <= end)
+//         {
+//             int mid = start + (end-start)/2;
+
+//             if(nums[mid] > nums[mid-1] &&  nums[mid] > nums[mid+1] ){
+//                 peak = mid;
+//                 break;
+//             }
+//             else if(nums[start] < nums[mid])
+//             {
+//                 start = mid +1;
+//             }
+//             else if(nums[mid] < nums[end])
+//             {
+//                 end = mid -1;
+//             }
+//         }
+
+
+
+
+//         if( target >= nums[0] && target <= nums[peak] )
+//         {
+//             return binary(nums, target, 0, peak);
+//         }else{
+//             return binary(nums, target, peak+1, nums.size()-1);
+//         }
+//     }
+// };
+
+
+class Solution {
+public:
+
+    //video Link: https://www.youtube.com/watch?v=5qGrJbHhqFs
+
+    int search(vector<int>& nums, int target) {
+        int first = 0;
+        int last = nums.size()-1;
+
+        while(first <= last){
+            int mid = first + (last-first)/2;
+
+            if(nums[mid]==target)
+            {
+                return mid;
+            }
+            //left half is sorted
+            else if(nums[first] <= nums[mid])
+            {   //target is between left region
+                if(target >= nums[first] && target < nums[mid])
+                {   
+                    //search in left region
+                    last = mid-1;
+                }
+                else
+                {
+                    //search in right region
+                    first = mid+1;
+                }
+            }
+            //right half is sorted
+            else
+            {
+                //target is between right region
+                if(target > nums[mid] && target <= nums[last])
+                {   
+                    //search in right region
+                    first = mid+1;
+                }
+                else
+                {
+                    //search in left region
+                    last = mid-1;
+                }
+            }
+        }
+        return -1;
+    }
+};
