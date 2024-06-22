@@ -1,0 +1,51 @@
+//Binary Search... Aditya Verma
+// class Solution {
+// public:
+//     int findMin(vector<int>& nums) {
+//         int start = 0;
+//         int end = nums.size()-1;
+//         int n = nums.size();
+//         while(start <= end){
+//            int mid = start + (end - start);
+//            if(nums[mid] < nums[(mid+1)%n]  && nums[mid] < nums[(mid+ n -1) % n]){
+//                return nums[mid];
+//            }
+//            else
+//            {
+//                if(nums[start] < nums[mid]){
+//                    start = mid+1;
+//                }
+//                else if(nums[mid] <= nums[end]){
+//                    end = mid -1;
+//                }
+//            }
+//         }
+//         return nums[0];
+//     }
+// };
+
+
+
+//Normal For loop... beats 100%
+class Solution { 
+public:
+    int findMin(vector<int>& nums) {
+        int n = nums.size();
+        if(nums[0] < nums[n-1] )
+        {
+            return nums[0];
+        }
+
+        if(nums.size() == 1) return nums[0];
+
+
+        for(int i =0; i< n; i++){
+            
+            if(nums[(i+n-1)%n] > nums[i]  && nums[i] < nums[(i+1)%n])
+            {
+                return nums[i];
+            }
+        }
+        return -1;
+    }
+};
