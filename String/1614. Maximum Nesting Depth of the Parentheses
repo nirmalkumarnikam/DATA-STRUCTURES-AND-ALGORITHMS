@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int maxDepth(string s) {
+        int leftBracket = 0;
+        int rightBracket = 0;
+
+        int count = 0;
+        int ans = INT_MIN;
+
+        for(int i =0; i<s.size(); i++)
+        {
+            if(s[i]=='(')count++; 
+            else if(s[i]==')')count--;
+            ans = max(count, ans);
+        }
+
+        return ans;
+    }
+};
