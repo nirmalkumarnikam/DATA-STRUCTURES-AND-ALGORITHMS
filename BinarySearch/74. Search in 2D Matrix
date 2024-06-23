@@ -1,0 +1,123 @@
+class Solution {
+public:
+    //first solution will be definately brute force one... 
+    //O(log N*M)
+    //iterate through each element of array.
+
+
+
+
+
+
+    // Better approach
+    // compare element with sarting and ending element of each row... 
+    // if ele is present in between them perform BS in that row only
+    // time comp = O(n) + O(log M)
+    
+    // bool searchMatrix(vector<vector<int>>& matrix, int target) {
+    //     for(int i = 0; i<matrix.size(); i++){
+    //         if(matrix[i][0] <= target && target <= matrix[i][matrix[0].size()-1]){
+    //             int start = 0; 
+    //             int end = matrix[0].size()-1;
+
+    //             while(start <= end){
+    //                 int mid = start + (end-start)/2;
+    //                 if(matrix[i][mid] == target){
+    //                     return true;
+    //                 }
+    //                 else if(matrix[i][mid] > target)
+    //                 {
+    //                     end = mid-1;
+    //                 }
+    //                 else
+    //                 {
+    //                     start = mid+1;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
+
+
+
+
+
+
+
+
+
+    // better approach
+    // time comp = O(M+N)
+    // space comp = O(1)
+    // Example 1: 
+    // start with top right corner ie: ele =  7
+    // if ele > target j--
+    // if ele < target i++
+    // till you find target
+
+    // bool searchMatrix(vector<vector<int>>& matrix, int target) {
+    //     int i = 0;
+    //     int j = matrix[0].size()-1;
+
+    //     while( i < matrix.size() && j >= 0)
+    //     {
+    //         if(matrix[i][j]==target)return true;
+    //         else if(matrix[i][j] > target)
+    //         {
+    //             j--;
+    //         }
+    //         else
+    //         {
+    //             i++;
+    //         }
+    //     }
+    //     return false;
+    // }
+
+    
+
+
+
+
+    //optimal approach: Binary Search
+    //virtually flaten the matrix 
+    // 1, 3, 5, 7, 10, 11, 16, 20, 23, 30, 34, 60
+    // ^                ^                       ^
+    // s                m                       e
+    // we can initialize 
+    // start = 0 and end = n*m-1    where n = num of rows, m = num of cols
+    // mid  = start + (end - start)/2;
+    // but for indexes of mid: matrix[row][col]  where row = mid / m, col = mid % m
+    // rest thing similar to BS
+
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+        
+        int start = 0;
+        int end = n*m-1;
+
+        while(start <= end){
+            int mid = start + (end-start)/2;
+
+            int row = mid / m;
+            int col = mid % m;
+
+            if(matrix[row][col]==target)
+            {
+                return true;
+            }
+            else if(matrix[row][col]>target)
+            {
+                end = mid-1;
+            }
+            else
+            {
+                start = mid+1;
+            }
+        }
+
+        return false;
+    }
+};
