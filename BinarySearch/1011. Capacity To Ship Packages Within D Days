@@ -1,0 +1,117 @@
+/*
+Brute Force 
+Time complexity = O(n^2)
+Space Complexity= O(1) 
+Passes 85/88 test cases... says memeory limit exceeded though used const space... Bullshit
+
+Algo:
+ship should have minCapacity so that it can carry all packages.
+and maxCapacity if sum of wt of all packages, both we have found out in first for loop
+
+then we are finding total no of days ship will take with different capacity.
+find no of days:
+    if load + wt is more than capacity then we will transport that wt next day
+    else we will add that wt to load.
+if daysReq is less than given days thats our ans;
+*/
+
+// class Solution {
+// public:
+
+//     int findDays(int capacity, vector<int>&wt ){
+//         int day=1;
+//         int load = 0;
+
+//         for(int i=0; i<wt.size(); i++){
+//             if(load + wt[i] > capacity){
+//                 day++;
+//                 load = wt[i];
+//             }
+//             else
+//             {
+//                 load += wt[i];
+//             }
+//         }
+//         return day;
+//     }
+
+//     int shipWithinDays(vector<int>& weights, int days) {
+//         int n = weights.size();
+//         int totalWeight=0;
+//         int minCapacity = INT_MIN;
+//         for(int i =0;  i<n; i++){
+//             totalWeight += weights[i];
+//             minCapacity = max(minCapacity,weights[i]);
+//         }
+
+//         for(int Capacity = minCapacity; Capacity<=totalWeight; Capacity++){
+//             int daysReq = findDays(Capacity, weights);
+//             if(daysReq<=days) return Capacity;
+//         }
+
+//         return -1;
+//     }
+// };
+
+
+
+
+/*
+Optimal approach using BS
+Time Complexity = O(log( totalWeight-minCapacity )) * O(N)
+                                  ^BS                   ^Linear search in findDays()
+Space Complexity = O(1)
+
+algo:
+instead of iterating over every capacity from minCapacity to totalWeight
+we will appy BS there,
+*/                
+class Solution {
+public:
+
+    int findDays(int capacity, vector<int>&wt ){
+        int day=1;
+        int load = 0;
+
+        for(int i=0; i<wt.size(); i++){
+            if(load + wt[i] > capacity){
+                day++;
+                load = wt[i];
+            }
+            else
+            {
+                load += wt[i];
+            }
+        }
+        return day;
+    }
+
+    int shipWithinDays(vector<int>& weights, int days) {
+        int n = weights.size();
+        int totalWeight=0;
+        int minCapacity = INT_MIN;
+        for(int i =0;  i<n; i++){
+            totalWeight += weights[i];
+            minCapacity = max(minCapacity,weights[i]);
+        }
+
+        int low = minCapacity;
+        int high = totalWeight;
+        int ans = -1;
+        while(low <= high){
+            int mid = low + (high-low)/2; 
+
+            int daysReq = findDays(mid, weights); //here mid will act as capacity
+            if(daysReq<=days){
+                ans = mid;
+                high = mid -1;
+            }
+            else
+            {
+                low = mid+1;
+            }
+        }
+
+        return ans;
+    }
+};
