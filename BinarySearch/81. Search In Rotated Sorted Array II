@@ -1,0 +1,63 @@
+//similar to rotated in sorted array...
+//this code works till test case 275/282
+//but will not work when arr will contain duplicate element
+// because the problem is caused when we have duplicate elements at start, mid and end position
+//          3  1  2  3  3  3  3
+//          ^        ^        ^
+//        start     mid      end
+// to solve this we will shrink the array till this case persist
+// basically when we end up atthis condition we will shrink search space by 
+// doing start++ and end--
+
+
+class Solution {
+public:
+    bool search(vector<int>& nums, int target) {
+        int first = 0;
+        int last = nums.size()-1;
+
+        while(first <= last){
+            int mid = first + (last-first)/2;
+            cout<<nums[mid]<<" ";
+            while(nums[mid]==nums[first] && nums[mid]==nums[last] && first < last){
+                first++;
+                last--;
+            }
+
+            if(nums[mid]==target)
+            {
+                return true;
+            }
+            //left half is sorted
+            else if(nums[first] <= nums[mid])
+            {   //target is between left region
+                if(target >= nums[first] && target < nums[mid])
+                {   
+                    //search in left region
+                    last = mid-1;
+                }
+                else
+                {
+                    //search in right region
+                    first = mid+1;
+                }
+            }
+            //right half is sorted
+            else
+            {
+                //target is between right region
+                if(target > nums[mid] && target <= nums[last])
+                {   
+                    //search in right region
+                    first = mid+1;
+                }
+                else
+                {
+                    //search in left region
+                    last = mid-1;
+                }
+            }
+        }
+        return false;
+    }
+};
