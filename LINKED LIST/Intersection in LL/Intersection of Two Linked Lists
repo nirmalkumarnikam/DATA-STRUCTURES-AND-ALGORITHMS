@@ -140,4 +140,47 @@ public:
         return NULL;
     }
 };
+
+
+
+/*
+optimal:
+algo:
+iterate both list simultaneously till they reach intersection...
+if one list reaches null, move its pointer to others head.
+else keep moving forward.
+
+Time Complexity: O(n+m) ... length of both LL
+Space Complexity:O(1)
+*/
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode* tempA=headA;
+        ListNode* tempB=headB;
+
+        while(tempA!=tempB){
+            //if one list reaches null, move its pointer to others head.
+            if(tempA == NULL){
+                tempA=headB;
+            }
+            //else keep moving forward.
+            else
+            {
+                tempA = tempA->next;
+            }
+
+            if(tempB == NULL)
+            {
+                tempB=headA;
+            }
+            else
+            {
+                tempB = tempB->next;
+            }
+        }
+        return tempA;
+      
+    }
+};
         
