@@ -1,7 +1,4 @@
-class Solution
-{
-    public:
-    //Function to reverse a linked list.
+ //iterative approach
     struct Node* reverseList(struct Node *head)
     {
         Node* temp = NULL;
@@ -18,4 +15,27 @@ class Solution
         return prev;
     }
     
-};
+
+//recursive approach
+    
+    struct Node* reverse(struct Node*prev,struct Node* curr){
+        if(curr != NULL){
+            Node* temp = curr->next;
+            curr -> next = prev;
+            prev = curr;
+            curr = temp;
+            
+            return reverse(prev, curr);
+        }
+        else
+        {
+            return prev;
+        }
+    }
+    
+    struct Node* reverseList(struct Node* head) {
+        Node* prev = NULL;
+        Node* curr = head;
+        
+        return reverse(prev, curr);
+    }
