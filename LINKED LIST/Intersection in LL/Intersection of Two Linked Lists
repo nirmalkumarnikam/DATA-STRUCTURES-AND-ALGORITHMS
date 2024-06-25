@@ -68,9 +68,6 @@ public:
 
 /*
 Best Approach:
-
-
-
 Algo:
     find the difference between lengths of array 
     traverse longer array till diff, 
