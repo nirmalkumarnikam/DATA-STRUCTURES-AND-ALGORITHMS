@@ -1,0 +1,108 @@
+/*
+Brute Force
+Time Complexity: O(n^3)
+Space Complexity: O(n) used by string ans
+
+algo:
+generate substring using 2 for loops and check if its palindrome
+if palindrome:
+    compare its size with check and if greter than check update check and put that string in ans
+*/
+
+
+// class Solution {
+// public:
+
+//     bool Palindrom(int i, int j, string &s){
+//         while(i<=j){
+//             if(s[i]!=s[j]){
+//                 return false;
+//             }
+//             i++,j--;
+//         }
+//         return true;
+//     }
+
+//     string longestPalindrome(string &s) {
+//         int n = s.size();
+//         int ansLen = -1;
+//         string ans="";
+//         // make substrings
+//         for(int i = 0; i<n; i++){
+//             for(int j = i; j<n; j++){
+//                 if( Palindrom(i,j,s) ){
+//                     if(ansLen < (j-i+1))
+//                     {//extracts a substring of length j-i+1 starting from index i from the string s. 
+//                         ans = s.substr(i,j-i+1); 
+//                         ansLen = j-i+1;
+//                     }
+//                 }
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+/*
+Optimal
+Time complexity: O(n^2)
+Space Complexity:O(n)
+pallindrome can be of odd size or even size
+Odd Size:
+    b  a  b  a  d
+   i-1 i i+1
+    L     R
+Even Size:
+    a  b  b  a
+      i-1 i
+       L  R
+
+Now do L-- and R++ till ele at L==R and compare each value with ansLen, 
+if ansLen is smaller than current string then store string in ans
+*/
+
+class Solution {
+public:
+    string longestPalindrome(string &s) {
+        int n = s.size();
+        int ansLen = 1;
+        string ans="";
+        ans.push_back(s[0]);
+
+        //check even palindrome
+        for(int i= 1; i<n; i++){
+            int left = i-1;
+            int right = i;
+
+            while( left>=0 && right<n && s[left]==s[right] ){
+                if(ansLen < (right - left + 1))
+                {//extracts a substring of length j-i+1 starting from index i from the string s. 
+                    ans = s.substr(left , right - left + 1); 
+                    ansLen = right - left + 1;
+                }
+                left--;
+                right++;
+            }
+
+        }
+
+        //check odd palindrome
+        for(int i = 1; i<n-1; i++){
+            int left = i-1;
+            int right = i+1;
+
+            while( left>=0 && right<n && s[left]==s[right]){
+                if(ansLen < (right - left + 1))
+                {//extracts a substring of length j-i+1 starting from index i from the string s. 
+                    ans = s.substr(left , right - left + 1); 
+                    ansLen = right - left + 1;
+                }
+                left--;
+                right++;
+            }
+
+        }
+
+        return ans;
+    }
+};
