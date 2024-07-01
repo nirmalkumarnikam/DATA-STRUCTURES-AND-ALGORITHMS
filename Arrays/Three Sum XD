@@ -1,0 +1,132 @@
+// cant control duplicated need to use set
+// TC : O(n^3) * O(logk) <-- inserting in set
+// SC : O(no of triplets) 
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        
+        set<vector<int>>ans;
+        
+        for(int i =0; i<nums.size(); i++){
+            for(int j = i+1; j<nums.size(); j++){
+                for(int k = j+1; k<nums.size(); k++){
+                    if(nums[i]+nums[j]+nums[k]==0){
+                        vector<int>temp{nums[i],nums[j],nums[k]};
+                        sort(temp.begin(), temp.end());
+                        ans.insert(temp);
+                    }
+                }
+            }
+        }
+
+        vector<vector<int>> result;
+
+        for(auto it: ans){
+            result.push_back(it);
+        }
+
+        return result;
+    }
+};
+
+
+
+//we are using set to remove 3rd for loop
+// TC : O(n^2) * O(log M) <-- inserting and finding in -> approx O(n^2)
+// SC : O(N) + O(no of triplets) 
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        // Use a set to store unique triplets
+        set<vector<int>> ans;
+        
+        // Iterate through each element in the array
+        for (int i = 0; i < nums.size(); i++) {
+            // Use a hash set to store the required complement for each pair
+            set<int> hashset;
+
+            // Iterate through the remaining elements after the current element
+            for (int j = i + 1; j < nums.size(); j++) {
+                // Calculate the required third element to make the sum zero
+                int third = -(nums[i] + nums[j]);
+
+                // Check if the required third element exists in the hash set
+                if (hashset.find(third) != hashset.end()) {    
+                    // If found, create a triplet with the current elements
+                    vector<int> temp{nums[i], nums[j], third};
+                    // Sort the triplet to maintain order and avoid duplicates
+                    sort(temp.begin(), temp.end());
+                    // Insert the triplet into the set to ensure uniqueness
+                    ans.insert(temp);
+                }
+                // Insert the current element into the hash set
+                hashset.insert(nums[j]);
+            }
+        }
+
+        // Convert the set of unique triplets to a vector
+        vector<vector<int>> result(ans.begin(), ans.end());
+        
+        // Alternative way of adding set elements into vector (commented out)
+        // for (auto it: ans) {
+        //     result.push_back(it);
+        // }
+
+        // Return the resulting vector of triplets
+        return result;
+    }
+};
+
+
+//two pointer approach
+//time complexity: O(n log N) + O(N * M)< M for that j & k movement
+                    ^sorting      ^teversal of i pointer
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        // Sort the input array to facilitate the two-pointer approach
+        sort(nums.begin(), nums.end());
+        
+        // Vector to store the result triplets
+        vector<vector<int>> ans;
+
+        // Iterate through the array with the first pointer `i`
+        for (int i = 0; i < nums.size(); i++) {
+            // Skip duplicate elements for the first position to avoid duplicate triplets
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+
+            // Initialize two pointers `j` and `k`
+            int j = i + 1;
+            int k = nums.size() - 1;
+
+            // Use two-pointer approach to find the remaining two elements
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k]; // Calculate the sum of the triplet
+
+                if (sum < 0) {
+                    // If the sum is less than zero, move the `j` pointer to the right to increase the sum
+                    j++;
+                } else if (sum > 0) {
+                    // If the sum is greater than zero, move the `k` pointer to the left to decrease the sum
+                    k--;
+                } else {
+                    // If the sum is zero, we found a valid triplet
+                    vector<int> temp = {nums[i], nums[j], nums[k]};
+                    ans.push_back(temp); // Add the triplet to the result
+
+                    // Move both pointers inward and skip duplicates
+                    j++;
+                    k--;
+                    // Skip duplicate elements for the second position
+                    while (j < k && nums[j] == nums[j - 1]) j++;
+                    // Skip duplicate elements for the third position
+                    while (j < k && nums[k] == nums[k + 1]) k--;
+                }
+            }
+        }
+        // Return the result vector containing all unique triplets
+        return ans;
+    }
+};
+
