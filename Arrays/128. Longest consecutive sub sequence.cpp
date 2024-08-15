@@ -1,44 +1,68 @@
 
 //brute force
 // time comp = n^2
-// class Solution {
-// public:
+class Solution {
+public:
 
-//     bool linearsearch(int x, vector<int>& nums){
-//         for(int i = 0; i< nums.size(); i++)
-//         {
-//             if(nums[i]==x)return true;
-//         }
-//         return false;
-//     }
+    bool linearsearch(int x, vector<int>& nums){
+        for(int i = 0; i< nums.size(); i++)
+        {
+            if(nums[i]==x)return true;
+        }
+        return false;
+    }
 
-//     int longestConsecutive(vector<int>& nums) {
+    int longestConsecutive(vector<int>& nums) {
         
-//         //if arr is empty return 0.
-//         if(nums.size()==0) return 0;
+        //if arr is empty return 0.
+        if(nums.size()==0) return 0;
         
-//         //select an element and find its next ele in array by linear search
-//         //if found increase count and find next number
-//         //repeate till next num is not found.
-//         // store count in global ans and return that.
+        //select an element and find its next ele in array by linear search
+        //if found increase count and find next number
+        //repeate till next num is not found.
+        // store count in global ans and return that.
 
-//         int ans= INT_MIN;
-//         for(int i = 0; i<nums.size(); i++){
-//             int cnt = 1;
-//             int x  = nums[i];
-//             while(linearsearch(x+1, nums))
-//             {
-//                 x = x+1;
-//                 cnt++;
-//             }
-//             ans = max(ans, cnt);
-//         }
-//         return ans;
-//     }
-// };
+        int ans= INT_MIN;
+        for(int i = 0; i<nums.size(); i++){
+            int cnt = 1;
+            int x  = nums[i];
+            while(linearsearch(x+1, nums))
+            {
+                x = x+1;
+                cnt++;
+            }
+            ans = max(ans, cnt);
+        }
+        return ans;
+    }
+};
 
 
+//TC: O(nlogn)
+//SC: O(1)
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(nums.size()==0)return 0;
+        
+        sort(nums.begin(), nums.end());
+        int ans = 1;
 
+        int count = 1;
+
+        for(int i = 1; i<nums.size(); i++){
+            if(nums[i-1] == nums[i]-1){
+                count++;
+                ans = max(ans, count);
+            }else if(nums[i]==nums[i-1]){
+                continue;
+            }else{
+                count = 1;
+            }
+        }
+        return ans;
+    }   
+};
 
 
 
@@ -99,52 +123,54 @@ public:
 
 //better  than set one
 //time comp = O(n)
-// class Solution {
-// public:
-//     int longestConsecutive(vector<int>& nums) {
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
 
-//         // if arr is empty return 0.
-//         if(nums.size()==0) return 0;
-//         if(nums.size()==1) return 1;
+        // if arr is empty return 0.
+        if(nums.size()==0) return 0;
+        if(nums.size()==1) return 1;
         
         
 
-//         sort(nums.begin(), nums.end());
+        sort(nums.begin(), nums.end());
 
-//         int lastsmaller = nums[0]; 
+        int lastsmaller = nums[0]; 
 
-//         int count = 1, ans = 1;
+        int count = 1, ans = 1;
 
-//            // here we are going to iterate over sorted array...
+           // here we are going to iterate over sorted array...
 
-//            // we will store 1st num in lastsmaller...
-//            // as there will be duplicate numbers... if( current num == lastsmaller) do nothing
-//            // else if( current num is 1 greater than lastsmaller ) count++, update lastsmaller, and update ans
-//            // else( current number is way different than last smaller which means sequece is broken ) restart count...
+           // we will store 1st num in lastsmaller...
+           // as there will be duplicate numbers... if( current num == lastsmaller) do nothing
+           // else if( current num is 1 greater than lastsmaller ) count++, update lastsmaller, and update ans
+           // else( current number is way different than last smaller which means sequece is broken ) restart count...
 
-//            // return ans;
+           // return ans;
 
-//         for(int i =0; i<nums.size();i++)
-//         {
+        for(int i =0; i<nums.size();i++)
+        {
 
-//             if(nums[i]== lastsmaller)
-//             {
-//                 continue;
-//             }
-//             else if(nums[i]-1 == lastsmaller)
-//             {
-//                 count++;
-//                 ans = max(ans,count);
-//                 lastsmaller = nums[i];
-//             }
-//             else
-//             {
-//                 count  = 1;
-//                 lastsmaller=nums[i];
-//             }
+            if(nums[i]== lastsmaller)
+            {
+                continue;
+            }
+            else if(nums[i]-1 == lastsmaller)
+            {
+                count++;
+                ans = max(ans,count);
+                lastsmaller = nums[i];
+            }
+            else
+            {
+                count  = 1;
+                lastsmaller=nums[i];
+            }
 
-//         }
-//         return ans;
+        }
+        return ans;
         
-//     }
-// };
+    }
+};
+
+
