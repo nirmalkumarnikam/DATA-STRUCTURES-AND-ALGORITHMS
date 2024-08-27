@@ -66,3 +66,58 @@ public:
     }
 };
 
+
+
+
+
+class Solution {
+public:
+
+/*
+    1)remove edge cases
+            if there is only one element... thats our ans
+            check corner elements
+
+         0  1  2  3  4  5  6  7  8
+    2)   1  1  2  2  3  4  4  8  8
+               i  j     k  l
+        
+        if couple is in left of single ele its index are {even, odd} == i j
+        if couple is in right of single ele its index are {odd, even} == k l
+*/
+
+    int singleNonDuplicate(vector<int>& nums) {
+        int n = nums.size();
+        if(nums.size()==1)return nums[0];
+        if(nums[0]!=nums[1])return nums[0];
+        if(nums[n-2]!=nums[n-1])return nums[n-1];
+
+        int start = 1,end = n-1;
+
+        while(start<=end){
+            int mid = start + (end-start)/2;
+
+            if(nums[mid]!=nums[mid-1] && nums[mid]!=nums[mid+1]){
+                return nums[mid];
+            }else if( nums[mid]==nums[mid-1] ){
+                if((mid-1)%2 == 0){
+                    start = mid+1;
+                }else{
+                    end = mid-1;
+                }
+            }else{
+                if((mid)%2 == 0){
+                    start = mid+1;
+                }else{
+                    end = mid-1;
+                }
+            }
+        }
+
+
+        return -1;
+    }
+};
+
+
+
