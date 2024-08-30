@@ -165,3 +165,27 @@ Q) How to convert integer to String?
 
 Q) How to initialize 2d vector?
 -> vector<vector<int>>newmatrix(n,vector<int>(m,0));
+
+
+
+
+
+
+Q) Find LCM and GCD.
+class Solution {
+  public:
+    long long gcd(long long A , long long B){
+        if(A ==0){
+            return B;
+        }
+        return gcd(B%A, A);
+    }
+  
+    vector<long long> lcmAndGcd(long long A , long long B) {
+        long long  g;
+        long long  l;
+        g = gcd(A,B);
+        l = (A*B)/g;
+        return {l,g};
+    }
+};
